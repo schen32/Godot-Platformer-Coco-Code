@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://5n1v26uy3hon"]
+[gd_scene load_steps=12 format=3 uid="uid://5n1v26uy3hon"]
 
 [ext_resource type="Script" uid="uid://coe3xo28qv57p" path="res://game_manager.gd" id="1_21xmu"]
 [ext_resource type="Texture2D" uid="uid://q0hgn3c3rs5i" path="res://Pixel Adventure 1/Free/Background/Green.png" id="2_8i3m3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://n6linpkswj0v" path="res://scenes/end.tscn" id="6_3opl0"]
 [ext_resource type="PackedScene" uid="uid://b1qhblx5oc31a" path="res://scenes/main_menu.tscn" id="7_6ep0u"]
 [ext_resource type="Texture2D" uid="uid://bap1sqjkl6uby" path="res://Pixel Adventure 1/Free/Menu/heart.png" id="8_hrcei"]
+[ext_resource type="Script" uid="uid://cqfkbqbbvyuvf" path="res://scenes/pause.gd" id="9_xa7n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("3_rmy57")
@@ -277,3 +278,52 @@ expand_mode = 2
 layout_mode = 2
 texture = ExtResource("8_hrcei")
 expand_mode = 2
+
+[node name="Pause" type="Node" parent="UI"]
+script = ExtResource("9_xa7n4")
+
+[node name="PausePanel" type="Panel" parent="UI/Pause"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -276.0
+offset_right = 493.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Pause/PausePanel"]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 56.0
+offset_right = 660.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 50
+text = "GAME PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause/PausePanel"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 142.0
+offset_right = 636.0
+offset_bottom = 463.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="UI/Pause/PausePanel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Resume
+"
+
+[node name="GoMainMenu" type="Button" parent="UI/Pause/PausePanel/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "Go to Main Menu"
+
+[connection signal="pressed" from="UI/Pause/PausePanel/VBoxContainer/Resume" to="UI/Pause" method="_on_resume_pressed"]
+[connection signal="pressed" from="UI/Pause/PausePanel/VBoxContainer/GoMainMenu" to="UI/Pause" method="_on_go_main_menu_pressed"]
