@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://5n1v26uy3hon"]
+[gd_scene load_steps=11 format=3 uid="uid://5n1v26uy3hon"]
 
 [ext_resource type="Script" uid="uid://coe3xo28qv57p" path="res://game_manager.gd" id="1_21xmu"]
 [ext_resource type="Texture2D" uid="uid://q0hgn3c3rs5i" path="res://Pixel Adventure 1/Free/Background/Green.png" id="2_8i3m3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://t067jt3v5koh" path="res://scenes/cherry.tscn" id="5_jifot"]
 [ext_resource type="PackedScene" uid="uid://n6linpkswj0v" path="res://scenes/end.tscn" id="6_3opl0"]
 [ext_resource type="PackedScene" uid="uid://b1qhblx5oc31a" path="res://scenes/main_menu.tscn" id="7_6ep0u"]
+[ext_resource type="Texture2D" uid="uid://bap1sqjkl6uby" path="res://Pixel Adventure 1/Free/Menu/heart.png" id="8_hrcei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("3_rmy57")
@@ -185,8 +186,19 @@ script = ExtResource("1_21xmu")
 
 [node name="TextureRect" type="TextureRect" parent="SceneObjects"]
 texture_filter = 1
-offset_right = 2492.0
-offset_bottom = 673.0
+offset_left = 13.0
+offset_top = 2.0
+offset_right = 2505.0
+offset_bottom = 675.0
+texture = ExtResource("2_8i3m3")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="SceneObjects"]
+texture_filter = 1
+offset_left = 13.0
+offset_top = 2.0
+offset_right = 2505.0
+offset_bottom = 675.0
 texture = ExtResource("2_8i3m3")
 stretch_mode = 1
 
@@ -207,7 +219,7 @@ position_smoothing_speed = 7.0
 [node name="Cherries" type="Node" parent="SceneObjects"]
 
 [node name="Cherry" parent="SceneObjects/Cherries" instance=ExtResource("5_jifot")]
-position = Vector2(440, 595)
+position = Vector2(453, 589)
 
 [node name="End" parent="SceneObjects" instance=ExtResource("6_3opl0")]
 position = Vector2(560, 559)
@@ -232,3 +244,36 @@ theme_override_font_sizes/font_size = 30
 text = "Points: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hearts" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 80.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Hearts"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heart" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_hrcei")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_hrcei")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_hrcei")
+expand_mode = 2
