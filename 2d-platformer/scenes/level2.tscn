@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5n1v26uy3hon"]
+[gd_scene load_steps=13 format=3 uid="uid://5n1v26uy3hon"]
 
 [ext_resource type="Script" uid="uid://coe3xo28qv57p" path="res://game_manager.gd" id="1_21xmu"]
 [ext_resource type="Texture2D" uid="uid://q0hgn3c3rs5i" path="res://Pixel Adventure 1/Free/Background/Green.png" id="2_8i3m3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1qhblx5oc31a" path="res://scenes/main_menu.tscn" id="7_6ep0u"]
 [ext_resource type="Texture2D" uid="uid://bap1sqjkl6uby" path="res://Pixel Adventure 1/Free/Menu/heart.png" id="8_hrcei"]
 [ext_resource type="Script" uid="uid://cqfkbqbbvyuvf" path="res://scenes/pause.gd" id="9_xa7n4"]
+[ext_resource type="PackedScene" uid="uid://orloy2h3ji7x" path="res://scenes/enemy.tscn" id="10_bo4dx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("3_rmy57")
@@ -179,9 +180,10 @@ sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
 [node name="Node" type="Node"]
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("hearts")]
 unique_name_in_owner = true
 script = ExtResource("1_21xmu")
+hearts = [NodePath("../UI/Hearts/HBoxContainer/Heart"), NodePath("../UI/Hearts/HBoxContainer/Heart2"), NodePath("../UI/Hearts/HBoxContainer/Heart3")]
 
 [node name="SceneObjects" type="Node" parent="."]
 
@@ -324,6 +326,9 @@ text = "Resume
 process_mode = 3
 layout_mode = 2
 text = "Go to Main Menu"
+
+[node name="Enemy" parent="." instance=ExtResource("10_bo4dx")]
+position = Vector2(342, 587)
 
 [connection signal="pressed" from="UI/Pause/PausePanel/VBoxContainer/Resume" to="UI/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="UI/Pause/PausePanel/VBoxContainer/GoMainMenu" to="UI/Pause" method="_on_go_main_menu_pressed"]
